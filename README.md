@@ -1,10 +1,11 @@
 # Ymenu
 
 # Install guide
+Enter to folder and run this: 
+
 ```
 source Install -Modes
 ```
-#
 
 Modes:
 
