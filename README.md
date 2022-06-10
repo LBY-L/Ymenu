@@ -1,6 +1,9 @@
 # Ymenu
 
+A simple tool of many scripts for ArchLinux
+
 # Install guide
+
 Enter to folder and run this: 
 
 ```
@@ -16,4 +19,8 @@ Modes:
 
 -s  To install ymenu in Spanish
 
-# Enjoy ! :)
+# Use
+
+`ymenu --help` for option of ymenu
+
+# Enjoy :)
