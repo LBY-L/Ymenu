@@ -1,6 +1,6 @@
 # Ymenu
 
-A simple tool of many scripts for ArchLinux
+A compilation of many scripts in a single application for ArchLinux
 
 # Install guide
 
@@ -21,6 +21,6 @@ Modes:
 
 # Use
 
-`ymenu --help` for option of ymenu
+`ymenu --help` to list the options
 
 # Enjoy :)
