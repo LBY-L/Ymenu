@@ -1,6 +1,6 @@
 # Ymenu
 
-#Install guide
+# Install guide
 ```
 source Install -Modes
 ```
