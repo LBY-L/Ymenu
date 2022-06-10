@@ -4,6 +4,9 @@
 Enter to folder and run this: 
 
 ```
+chmod +777 Install
+```
+```
 source Install -Modes
 ```
 
