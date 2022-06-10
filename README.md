@@ -19,7 +19,7 @@ Modes:
 
 -s  To install ymenu in Spanish
 
-# Use
+# Usege
 
 `ymenu --help` to list the options
 
