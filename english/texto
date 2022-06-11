@@ -1,0 +1,95 @@
+#!/bin/bash
+B="\e[1;44m"
+FT="\e[1;30m\e[1m"
+R="\e[0m"
+S="\e[100m"
+PR="\e[1;34m"
+function key {
+echo -e "$FT$B"
+echo -e " Enter: HOME  Q: Exit    E: Edit    M: Crear Dr "
+echo -e " N: Create Sc  R: Remove  J: Execute            " ; echo -e $R
+}
+function int {
+clear
+D=$(pwd) ; lsd "$D"
+key
+echo ""
+echo -e "$FT    $B   $D  $R"
+echo ""
+}
+function quit1 {
+echo -e "$PR"
+read -p "    " e
+if [[ $e == q ]]; then
+exit
+elif [[ $e == Q ]]; then
+exit
+fi
+}
+function edit {
+int
+echo -e "$FT    $B       $R"
+echo -e "$FT    $B Edit: $S $R"
+echo -e "$FT    $B       $S $R"
+echo -e "$FT     $S       $R"
+quit1 ; nano "$e"
+}
+function new {
+int
+echo -e "$FT    $B           $R"
+echo -e "$FT    $B New file: $S $R"
+echo -e "$FT    $B           $S $R"
+echo -e "$FT     $S           $R"
+quit1 ; touch "$D/$e" ; echo '#!/bin/bash' >> "$D/$e" ; chmod +x "$D/$e"
+}
+function rmv {
+int
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B Remove: $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+quit1 ; rm -r "$D/$e"
+}
+function run {
+int
+echo -e "$FT    $B      $R"
+echo -e "$FT    $B Run: $S $R"
+echo -e "$FT    $B      $S $R"
+echo -e "$FT     $S      $R"
+quit1 ; clear ; sh "$D/$e"
+sleep 1
+}
+function mek {
+int
+echo -e "$FT    $B                $R"
+echo -e "$FT    $B New directory: $S $R"
+echo -e "$FT    $B                $S $R"
+echo -e "$FT     $S                $R"
+quit1 ; mkdir "$D/$e"
+}
+while true; do
+int
+echo -e "$FT    $B                    $R"
+echo -e "$FT    $B Enter a directory: $S $R"
+echo -e "$FT    $B                    $S $R"
+echo -e "$FT     $S                    $R"
+echo -e "$PR"
+read -p "    " dir
+if [[ $dir == q ]]; then break ; break ; break
+elif [[ $dir == Q ]]; then break ; break ; break
+elif [[ -z $dir ]]; then	cd $HOME ; lsd $HOME
+fi
+if [[ $dir == e ]]; then edit
+elif [[ $dir == E ]]; then edit
+fi
+if [[ $dir == n ]]; then new
+elif [[ $dir == N ]]; then new
+elif [[ $dir == r ]]; then rmv
+elif [[ $dir == R ]]; then rmv
+elif [[ $dir == j ]]; then run
+elif [[ $dir == J ]]; then run
+elif [[ $dir == m ]]; then mek
+elif [[ $dir == M ]]; then mek
+fi
+cd $HOME/"$dir" ; clear ; D=$(pwd) ; lsd "$D"
+done
