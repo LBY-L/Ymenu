@@ -4,7 +4,6 @@ A compilation of many scripts in a single application for ArchLinux
 
 # Install guide
 
-Enter to folder and run this: 
 ```
 cd Ymenu
 ```
