@@ -1,0 +1,28 @@
+#!/bin/bash
+while true; do
+men=$(yad --on-top --list --borders=50 --sticky --undecorated --width=335 --height=250 --no-buttons --title="Menu" --column="" \
+'[ ◀ Back to the top ]' \
+'[ Shutdown ]' \
+'[ Reboot ]' \
+'[ Logout ]' )
+var=$?
+#echo $var
+#echo $men
+if [[ $var == 0 ]]; then
+	if [[ $men == "[ ◀ Back to the top ]|" ]]; then
+		sh $rt/start $rt/ymenu2
+		break
+	elif [[ $men == "[ Shutdown ]|" ]]; then
+		shutdown 0
+		break
+	elif [[ $men == "[ Reboot ]|" ]]; then
+		reboot
+		break
+	elif [[ $men == "[ Logout ]|" ]]; then
+		kill -9 -1
+		break
+	fi
+elif [[ $var == 252 ]]; then
+	break
+fi
+done

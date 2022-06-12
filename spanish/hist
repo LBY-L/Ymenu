@@ -1,0 +1,44 @@
+#!/bin/bash
+B="\e[1;44m"
+FT="\e[1;30m\e[1m"
+R="\e[0m"
+S="\e[100m"
+function act {
+clear ; cat $Sh ; echo " " ;
+echo -e "$FT    $B  $Vs   $R" ;
+echo -e "$FT    $B                 $S $R" ;
+echo -e "$FT    $B   Qq: Salir     $S $R" ;
+echo -e "$FT    $B   Rr: Recargar  $S $R" ;
+echo -e "$FT    $B                 $S $R" ;
+echo -e "$FT     $S                 $R" &
+}
+function act2 {
+clear
+echo " ";
+echo " ";
+echo -e "$FT    $B                 $R" ;
+echo -e "$FT    $B   Qq: Salir     $S $R" ;
+echo -e "$FT    $B   Rr: Recargar  $S $R" ;
+echo -e "$FT    $B                 $S $R" ;
+echo -e "$FT     $S                 $R" &
+}
+function act3 {
+echo -e " " ; echo -e "$FT      $B No se pudo detectar su shell Use ZSH o BASH $R" ; echo -e " " ; sleep 3 ; exit 0
+}
+sh=$SHELL
+if [[ $sh == /bin/zsh ]]; then Sh=$HOME/.zsh_history ; Vs="History ZSH "
+elif [[ $sh == /bin/bash ]]; then Sh=$HOME/.bash_history ; Vs="History BASH" ;
+else act3
+fi
+act
+while true; do read -n1 -s input
+if [[ $input == Q ]]; then break
+elif [[ $input == q ]]; then break
+elif [[ $input == R ]]; then act
+elif [[ $input == r ]]; then act
+else act2
+fi
+done
+
+
+

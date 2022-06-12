@@ -1,0 +1,72 @@
+#!/bin/bash
+B="\e[1;44m"
+FT="\e[1;30m\e[1m"
+R="\e[0m"
+S="\e[100m"
+PR="\e[1;34m"
+function help {
+echo -e "$FT    $B          [  1.2  ]         $R"
+echo -e "$FT    $B -rR  Para correr ymenu     $S $R"
+echo -e "$FT    $B -dD  Para eliminiar ymenu  $S $R"
+echo -e "$FT    $B -uU  Para actualizar ymenu $S $R"
+echo -e "$FT    $B                            $S $R"
+echo -e "$FT     $S                            $R"
+}
+function bad {
+echo -e "$FT    $B                            $R"
+echo -e "$FT    $B   Para actualizar ymenu    $S $R"
+echo -e "$FT    $B   corralo de esta forma:   $S $R"
+echo -e "$FT    $B                            $S $R"
+echo -e "$FT     $S                            $R"
+echo ""
+echo -e "$FT    $B                      $R"
+echo -e "$FT    $B   source ymenu -u    $S $R"
+echo -e "$FT    $B                      $S $R"
+echo -e "$FT     $S                      $R"
+}
+function run {
+	sh $HOME/.ymenu/spanish/start $HOME/.ymenu/spanish/ymenu2
+}
+function del {
+	sudo rm -r $HOME/.ymenu
+	sudo rm -r /usr/bin/ymenu
+}
+function up {
+echo -e "$FT    $B                     $R"
+echo -e "$FT    $B   Actualizando...   $S $R"
+echo -e "$FT    $B                     $S $R"
+echo -e "$FT     $S                     $R"
+sleep 1 &&
+sudo rm -r $HOME/ymenu-updates
+clear 
+git clone https://github.com/LBY-L/Ymenu $HOME/ymenu-updates &&
+cd $HOME/ymenu-updates &&
+chmod +777 Install &&
+source Install -s
+}
+function upt {
+term=$(ps -h -o comm -p $PPID)
+if [[ $term == tilix ]]; then up
+elif [[ $term == konsole ]]; then up
+elif [[ $term == terminator ]]; then up
+elif [[ $term == gnome-terminal ]]; then upt
+elif [[ $term == xfce4-terminal ]]; then up
+elif [[ $term == alacritty ]]; then up
+elif [[ $term == kitty ]]; then up
+else
+	bad	
+fi
+}
+prompt=$1
+if [[ -z $1 ]]; then help
+elif [[ $1 == -r ]]; then run
+elif [[ $1 == -R ]]; then run
+elif [[ $1 == -d ]]; then del
+elif [[ $1 == -D ]]; then del
+elif [[ $1 == -u ]]; then upt
+elif [[ $1 == -U ]]; then upt
+elif [[ $1 == -h ]]; then help
+elif [[ $1 == -H ]]; then help
+elif [[ $1 == --help ]]; then help
+else help
+fi

@@ -1,0 +1,24 @@
+#!/bin/bash
+while true; do
+men=$(yad --on-top --list --borders=50 --sticky --undecorated --width=370 --height=230 --no-buttons --title="Menu" --column="" \
+'[ Ejecutar applets ▶ ]' \
+'[ Opciones de apagado ▶ ]' \
+'[ Opciones de layout ▶ ]' )
+var=$?
+#echo $var
+#echo $men
+if [[ $var == 0 ]]; then
+	if [[ $men == "[ Ejecutar applets ▶ ]|" ]]; then
+		sh $rt/start $rt/yapplet
+		break
+	elif [[ $men == "[ Opciones de apagado ▶ ]|" ]]; then
+		sh $rt/start $rt/yapagado
+		break
+	elif [[ $men == "[ Opciones de layout ▶ ]|" ]]; then
+		sh $rt/start $rt/ybspc
+		break
+	fi
+elif [[ $var == 252 ]]; then
+	break
+fi
+done
