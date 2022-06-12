@@ -1,31 +1,35 @@
 # Ymenu
 
-A compilation of many scripts in a single application for ArchLinux
+> ### **A compilation of many scripts in a single application for ArchLinux**
+
+![image](https://user-images.githubusercontent.com/93894290/173252876-58dd050b-e6d0-4ca0-9cc5-9110688a95e6.png)
 
 # Install guide
 
 ```
 cd Ymenu
 ```
+
 ```
 chmod +777 Install
 ```
+
 ```
 source Install -Modes
 ```
 
-Modes:
+### Modes:
 
--e  To install ymenu in English
+**`-e`**   To install ymenu in English
 
--s  To install ymenu in Spanish
+**`-s`**   To install ymenu in Spanish
 
-# Usege
+### Usage
 
-`ymenu --help` to list the options
+**`ymenu --help`** to list the options
 
 # Enjoy :)
 
-### For more information ->
+### For more information **➤**
 
-https://github.com/LBY-L/Ymenu/releases/tag/v1.2
+**https://github.com/LBY-L/Ymenu/releases/tag/v1.2**
