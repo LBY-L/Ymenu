@@ -25,3 +25,7 @@ Modes:
 `ymenu --help` to list the options
 
 # Enjoy :)
+
+### For more information ->
+
+https://github.com/LBY-L/Ymenu/releases/tag/v1.2
