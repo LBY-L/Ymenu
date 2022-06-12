@@ -30,6 +30,4 @@ source Install -Modes
 
 # Enjoy :)
 
-### For more information **➤**
-
-**https://github.com/LBY-L/Ymenu/releases/tag/v1.2**
+### [For more information 	˂╝](https://github.com/LBY-L/Ymenu/releases/tag/v1.2)
