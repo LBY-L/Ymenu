@@ -1,0 +1,130 @@
+#!/bin/bash
+B="\e[1;44m"
+FT="\e[1;30m\e[1m"
+R="\e[0m"
+S="\e[100m"
+A="\e[1;35m"
+dir=$(pwd)
+term=$(ps -h -o comm -p $PPID)
+function bad {
+echo -e "$FT    $B                              $R"
+echo -e "$FT    $B   Run it is:                 $S $R"
+echo -e "$FT    $B    source Install -(Modes)   $S $R"
+echo -e "$FT    $B                              $S $R"
+echo -e "$FT     $S                              $R"
+echo ""
+echo -e "$FT    $B            $R"
+echo -e "$FT    $B   Modes:   $S $R"
+echo -e "$FT    $B            $S $R"
+echo -e "$FT     $S            $R"
+echo ""
+echo -e "$FT    $B                                     $R"
+echo -e "$FT    $B   -e  To install ymenu in English   $S $R"
+echo -e "$FT    $B   -s  To install ymenu in Spanish   $S $R"
+echo -e "$FT    $B                                     $S $R"
+echo -e "$FT     $S                                     $R"
+}
+function inst {
+clear
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   1/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S yad --noconfirm &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   2/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S make --noconfirm &
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   3/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S git --noconfirm &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   4/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+touch $HOME/tty-clock-git-tmp &&
+echo "$dir" >> $HOME/tty-clock-git-tmp ; hme=$(cat $HOME/tty-clock-git-tmp) &&
+sudo rm -r $HOME/tty-clock ; git clone https://aur.archlinux.org/tty-clock-git.git $HOME/tty-clock &&
+chmod +777 $HOME/tty-clock -R && cd $HOME/tty-clock &&
+makepkg -si --noconfirm && cd $hme && rm -r $HOME/tty-clock-git-tmp &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   5/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S scrcpy --noconfirm &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   6/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S figlet --noconfirm &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   7/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S lsd --noconfirm &&
+sleep 1 && clear && 
+echo -e "$FT    $B         $R"
+echo -e "$FT    $B   8/8   $S $R"
+echo -e "$FT    $B         $S $R"
+echo -e "$FT     $S         $R"
+sudo pacman -S nano --noconfirm &&
+sleep 1 && clear && 
+clear &&
+chmod +777 $dir -R
+}
+function problmEs {
+term=$(ps -h -o comm -p $PPID)
+if [[ $term == tilix ]]; then
+	inst && source $dir/WizardEs 
+elif [[ $term == konsole ]]; then
+	inst && source $dir/WizardEs
+elif [[ $term == terminator ]]; then
+	inst && source $dir/WizardEs
+elif [[ $term == xfce4-terminal ]]; then
+	inst && source $dir/WizardEs
+elif [[ $term == gnome-terminal ]]; then
+	inst && source $dir/WizardEs
+elif [[ $term == alacritty ]]; then
+	inst && source $dir/WizardEs
+elif [[ $term == kitty ]]; then
+	inst && source $dir/WizardEs
+else
+	clear && bad
+fi
+}
+function problmUs {
+term=$(ps -h -o comm -p $PPID)
+if [[ $term == tilix ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == konsole ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == terminator ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == xfce4-terminal ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == gnome-terminal ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == alacritty ]]; then
+	inst && source $dir/WizardUs
+elif [[ $term == kitty ]]; then
+	inst && source $dir/WizardUs
+else
+	clear && bad
+fi
+}
+echo $term
+prompt=$($1)
+if [[ $1 == -e ]]; then problmUs
+elif [[ $1 == -s ]]; then problmEs
+else 
+	clear && bad
+fi
